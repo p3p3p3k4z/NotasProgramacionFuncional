@@ -11,3 +11,18 @@ Construcciones nombramiento diferido
 |
 | Le Si i=1.. m S
 
+Haskel esta estructurada en clase
+**Show** puede imprimir y sacar el elementos
+
+En este caso implemenntamos **colores.hs**
+Asi como un pequeño ejemplo con **ropa.hs**
+
+> :l ropa.hs
+> precio Camisa + precio Playera + precio Short
+> 2205
+> estilo Camisa Amarillo
+
+Para **datos.hs**
+
+> eval ej
+> :t precio
