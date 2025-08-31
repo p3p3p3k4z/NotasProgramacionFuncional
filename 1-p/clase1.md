@@ -56,7 +56,7 @@ putStr ("hola" ++ "mundo")
 
 ### `let in`
 
-El `let in` es una construcción que permite **crear una variable temporal** para usarla dentro de una expresión. Es una pregunta común de examen porque es fundamental para entender la inmutabilidad de Haskell. Construccion de nombramiento anticipado
+El `let in` es una construcción que permite **crear una variable temporal** para usarla dentro de una expresión. Es una pregunta común de examen porque es fundamental para entender la inmutabilidad de Haskell. **Construccion de nombramiento anticipado**
 
 ```haskell
 -- Define 'x' con el valor 2 y luego usa 'x' en la expresion 'x + x'
@@ -71,8 +71,6 @@ let x = 4; y = 10 in x + y
 -----
 
 ### Definición de funciones
-
-Estas notas son muy importantes, ya que muestran dos formas de definir la función factorial en Haskell.
 
 1.  **Definición con `foldr`**: `foldr` es una función de orden superior. La función `foldr (*) 1 [1..n]` significa "aplica el operador de multiplicación `(*)` a la lista de números `[1..n]`, empezando por la derecha, y usa `1` como valor inicial". Es una forma muy concisa y **funcional** de resolver el problema.
 

@@ -1,7 +1,3 @@
-¡Claro\! He tomado tus notas y las he organizado para que queden más claras y completas. He añadido explicaciones y ejemplos de código que encajan perfectamente con lo que anotaste, sin mezclar la retroalimentación con el contenido de la nota. De esta manera, tendrás un recurso de estudio bien estructurado.
-
------
-
 ### Construcción `where` (Nombramiento diferido)
 
 La cláusula `where` te permite definir variables o funciones locales que solo son visibles en la expresión a la que están unidas. Es una forma de organizar tu código y hacerlo más legible. Las definiciones en el `where` se evalúan después de la expresión principal, lo cual explica la idea de "nombramiento diferido" que anotaste.
@@ -41,51 +37,37 @@ data Color = Rojo | Azul | Amarillo | Verde | Negro | Blanco
   deriving Show
 ```
 
-Aridad
+- Aridad
 
 La aridad de una función se refiere al número de argumentos que acepta. En este caso, la función cambiar tiene una aridad de 1, ya que solo toma un argumento de tipo Color. La flecha -> en la signatura Color -> Color separa los argumentos del resultado. En este caso, solo hay un argumento antes de la última flecha.
 
-Dominio y CodominioAridad
+- Dominio y CodominioAridad
 
 La aridad de una función se refiere al número de argumentos que acepta. En este caso, la función cambiar tiene una aridad de 1, ya que solo toma un argumento de tipo Color. La flecha -> en la signatura Color -> Color separa los argumentos del resultado. En este caso, solo hay un argumento antes de la última flecha.
 
-Dominio y Codominio
+- Dominio y Codominio
 
-    El dominio de una función es el conjunto de valores que la función puede recibir como entrada. Para la función cambiar, el dominio es el tipo de datos Color.
+El dominio de una función es el conjunto de valores que la función puede recibir como entrada. Para la función cambiar, el dominio es el tipo de datos Color.
 
-    El codominio es el conjunto de valores que la función puede devolver como resultado. En este caso, el codominio también es el tipo de datos Color.
-
-Esto se especifica claramente en la signatura de la función (cambiar :: Color -> Color), donde el primer Color es el dominio y el último Color es el codominio.
-
-Cláusulas (Definiciones de casos)
-
-Las definiciones de tu función cambiar se construyen mediante cláusulas, donde cada línea maneja un caso específico (por ejemplo, cambiar Azul = Verde).
-
-Como anotaste, estas cláusulas deben ser:
-
-    Exclusivas: Cada cláusula debe manejar un caso único. La línea cambiar Azul = Amarillo se comenta en el código para evitar que haya dos definiciones para el mismo argumento (Azul), lo que generaría un error.
-
-    Exhaustivas: Deben cubrir todos los posibles valores del dominio. Si no incluyes una cláusula para el color Verde, el código no compilará porque la definición no es completa. Para corregir esto, se ha añadido cambiar Verde = Amarillo al código.
-
-    No Redundantes: No debe haber definiciones repetidas o innecesarias.
-
-    El dominio de una función es el conjunto de valores que la función puede recibir como entrada. Para la función cambiar, el dominio es el tipo de datos Color.
-
-    El codominio es el conjunto de valores que la función puede devolver como resultado. En este caso, el codominio también es el tipo de datos Color.
+El codominio es el conjunto de valores que la función puede devolver como resultado. En este caso, el codominio también es el tipo de datos Color.
 
 Esto se especifica claramente en la signatura de la función (cambiar :: Color -> Color), donde el primer Color es el dominio y el último Color es el codominio.
 
-Cláusulas (Definiciones de casos)
+- Cláusulas (Definiciones de casos)
 
 Las definiciones de tu función cambiar se construyen mediante cláusulas, donde cada línea maneja un caso específico (por ejemplo, cambiar Azul = Verde).
 
-Como anotaste, estas cláusulas deben ser:
+Exclusivas: Cada cláusula debe manejar un caso único. La línea cambiar Azul = Amarillo se comenta en el código para evitar que haya dos definiciones para el mismo argumento (Azul), lo que generaría un error.
 
-    Exclusivas: Cada cláusula debe manejar un caso único. La línea cambiar Azul = Amarillo se comenta en el código para evitar que haya dos definiciones para el mismo argumento (Azul), lo que generaría un error.
+Exhaustivas: Deben cubrir todos los posibles valores del dominio. Si no incluyes una cláusula para el color Verde, el código no compilará porque la definición no es completa. Para corregir esto, se ha añadido cambiar Verde = Amarillo al código.
 
-    Exhaustivas: Deben cubrir todos los posibles valores del dominio. Si no incluyes una cláusula para el color Verde, el código no compilará porque la definición no es completa. Para corregir esto, se ha añadido cambiar Verde = Amarillo al código.
+No Redundantes: No debe haber definiciones repetidas o innecesarias.
 
-    No Redundantes: No debe haber definiciones repetidas o innecesarias.
+El dominio de una función es el conjunto de valores que la función puede recibir como entrada. Para la función cambiar, el dominio es el tipo de datos Color.
+
+El codominio es el conjunto de valores que la función puede devolver como resultado. En este caso, el codominio también es el tipo de datos Color.
+
+Esto se especifica claramente en la signatura de la función (cambiar :: Color -> Color), donde el primer Color es el dominio y el último Color es el codominio.
 
 #### `ropa.hs`
 
@@ -119,21 +101,21 @@ ejemplo_ropa = precio Camisa + precio Playera + precio Short
 
 Conceptos clave en tu código
 
-    Firma de la función (::): La línea precio :: Num a => Ropa -> a es la firma de la función.
+Firma de la función (::): La línea precio :: Num a => Ropa -> a es la firma de la función.
 
-        El dominio de esta función es Ropa, es decir, la función espera un argumento que sea una Camisa, Playera, Short o Pantalon.
+El dominio de esta función es Ropa, es decir, la función espera un argumento que sea una Camisa, Playera, Short o Pantalon.
 
-        El codominio es a, que es cualquier tipo de dato numérico (Int, Float, etc.). El prefijo Num a => es lo que le dice a Haskell que a debe ser un tipo numérico, por lo que puedes usar tanto números enteros como decimales.
+El codominio es a, que es cualquier tipo de dato numérico (Int, Float, etc.). El prefijo Num a => es lo que le dice a Haskell que a debe ser un tipo numérico, por lo que puedes usar tanto números enteros como decimales.
 
-    Exhaustividad: Como anotaste, es fundamental que las funciones sean exhaustivas, lo que significa que deben tener una definición para cada posible valor del tipo de entrada. En tu código original, faltaba la definición para Camisa, lo que hubiera causado un error en tiempo de ejecución. He añadido la línea precio Camisa = 1200 para que la función sea completa.
+Exhaustividad: Como anotaste, es fundamental que las funciones sean exhaustivas, lo que significa que deben tener una definición para cada posible valor del tipo de entrada. En tu código original, faltaba la definición para Camisa, lo que hubiera causado un error en tiempo de ejecución. He añadido la línea precio Camisa = 1200 para que la función sea completa.
 
-    Coherencia en los datos: Tu código definía un precio para Pantalon, pero Pantalon no existía en el tipo de datos Ropa. Un error muy común. He añadido Pantalon a la definición de data Ropa para que tu función sea coherente con tus datos.
+Coherencia en los datos: Tu código definía un precio para Pantalon, pero Pantalon no existía en el tipo de datos Ropa. Un error muy común. He añadido Pantalon a la definición de data Ropa para que tu función sea coherente con tus datos.
 
-    Manejo de casos con _ y error: La línea estilo _ _ = error "No definido" es una excelente manera de manejar casos no definidos.
+Manejo de casos con _ y error: La línea estilo _ _ = error "No definido" es una excelente manera de manejar casos no definidos.
 
-        El guion bajo (_) se llama patrón comodín; le dice a Haskell que el argumento puede ser cualquier cosa.
+El guion bajo (_) se llama patrón comodín; le dice a Haskell que el argumento puede ser cualquier cosa.
 
-        La función error detiene la ejecución del programa y muestra el mensaje que has escrito. Esto te ayuda a encontrar rápidamente combinaciones que no habías considerado en tu lógica.
+La función error detiene la ejecución del programa y muestra el mensaje que has escrito. Esto te ayuda a encontrar rápidamente combinaciones que no habías considerado en tu lógica.
 
 -----
 
