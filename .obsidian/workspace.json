@@ -1,0 +1,208 @@
+{
+  "main": {
+    "id": "dad68ab0d94b4fb0",
+    "type": "split",
+    "children": [
+      {
+        "id": "50dba4905b0bb533",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b698b3bd6fdbb1e7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1-p/clase7.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "clase7"
+            }
+          },
+          {
+            "id": "e25f4fd870eae201",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1-p/clase15.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "clase15"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "716a59aa8e38c1d8",
+    "type": "split",
+    "children": [
+      {
+        "id": "899d386f8a77c16b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e691c9e451f9218d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "10b15b793251e64f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "f8cd25afa2c13687",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2f36ad4feff12da8",
+    "type": "split",
+    "children": [
+      {
+        "id": "e341a040dc78ce02",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ab7ed1aa71b0ec9b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "1-p/clase1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for clase1"
+            }
+          },
+          {
+            "id": "581e9db175a09a38",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "1-p/clase1.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from clase1"
+            }
+          },
+          {
+            "id": "63b64536e9a1ae22",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "ed2cd3e42bf80b59",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "1-p/clase1.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of clase1"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "e25f4fd870eae201",
+  "lastOpenFiles": [
+    "1-p/clase8.md",
+    "1-p/Guia de Estudio.md",
+    "1-p/clase15.md",
+    "Guia de Estudio.md",
+    "1-p/clase9.md",
+    "1-p/clase13.md",
+    "1-p/clase12.md",
+    "1-p/clase11.md",
+    "clase9.md",
+    "clase8.md",
+    "1-p/clase15/alg.hs",
+    "1-p/clase15",
+    "1-p/clase13/altoOrden.hs",
+    "1-p/clase13",
+    "1-p/clase7.md",
+    "1-p/clase6.md",
+    "1-p/clase1.md",
+    "README.md"
+  ]
+}
