@@ -1,8 +1,7 @@
-import Data.list
+import Data.List
 
 quickSort[] = []
 quickSort(a:bs) = quickSort [b | b <- bs, b<a] ++ [a]++quickSort[b | b <-bs,b>=a]
-
 
 
 mergeSort[] = []
@@ -18,10 +17,19 @@ merge ls [] = ls
 merge (a:bs)(b:cs) =
 	if a<=b then a:merge bs (b:cs) else b:merge(a:bs)cs
 
+
 selectionSort[]
 m:selecctionSort(delete m (a:bs))
 	where
 		m= minimun(a:bs)
-insertSort [] = []
-insertSort(a,b,c) = take b(if a>=b then b<-a |
+
+
+insertionSort :: (Ord a) => [a] -> [a]
+insertionSort [] = []
+insertionSort (x:xs) = insert x (insertionSort xs)
+  where
+    insert x [] = [x]
+    insert x (y:ys)
+      | x <= y    = x : y : ys
+      | otherwise = y : insert x ys
 
