@@ -24,3 +24,6 @@ fib(1)=>1:-true.
 r(fib(N),fib(N1)+fib(N2)):-
 N1 is N-1,
 N2 is N-2.
+
+len([])=>0:-true.
+len[A[ls]]=>1+len(ls).
