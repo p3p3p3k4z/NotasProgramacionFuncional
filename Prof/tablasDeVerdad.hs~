@@ -1,0 +1,2 @@
+tablaOr = [(p,q,p || q) | p <-[True,False],q<-[True,False]]
+tablaOr = [(p,q,p && q) | p <-[True,False],q<-[True,False]] 

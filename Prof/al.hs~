@@ -1,0 +1,5 @@
+
+
+
+dot [] [] = 0
+dot (a:bs) (b:cs) = a*b+dot bs cs

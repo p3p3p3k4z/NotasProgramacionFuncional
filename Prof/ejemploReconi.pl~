@@ -1,0 +1,16 @@
+
+:-use_module(library(pce)).
+
+
+
+main :-
+	new(P,window('Hello!',size(200,100))),
+	send(P,display,
+	     new(Text,text('Hello Soriana',
+	          center,font(times,bold,18))),point(200,20)),
+	send(Text,recogniser,new(move_gesture(left,c))),
+
+	send(P,display, new(B,box(30,30)),point(200,20)),
+	send(B,recogniser,new(move_gesture(right,c))),
+
+	send(P,open).

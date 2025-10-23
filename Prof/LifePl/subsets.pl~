@@ -1,0 +1,10 @@
+subsets([],[[]]).
+subsets([A|L],G) :-
+	subsets(L,Ts),
+	repartir(A,Ts,Ts1),
+	append(T,Ts1,G).
+
+repartir(A,[],[]).
+repartir(A,[B|Ls],[H|Ms]) :-
+	append([A],B,H),
+	repartir(A,Ls,Ms).

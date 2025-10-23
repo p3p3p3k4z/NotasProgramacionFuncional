@@ -1,0 +1,11 @@
+
+
+1) Pegar 3 cadenas:
+
+pegar3 ls ms ns = ls ++ ms ++ ns
+
+Opcional:
+pegar3 ls ms ns = concat [ls,ms,ns]
+
+pegar3 ls ms ns = foldr (++) [] [ls, ms, ns]
+

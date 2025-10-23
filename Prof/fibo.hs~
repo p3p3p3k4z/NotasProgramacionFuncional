@@ -1,0 +1,9 @@
+
+fib 0 = 1 --primera cláusula 
+fib 1 = 1 --segundra cláusula
+fib n | n>1 = fib (n-1) + fib (n-2)
+
+-- análisis de eficiencia:   :set +s 
+-- análisis de tipo:         :set +t 
+
+fibs = (1:1:zipWith (+) fibs (tail fibs))

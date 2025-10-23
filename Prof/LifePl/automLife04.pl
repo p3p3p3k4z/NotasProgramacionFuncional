@@ -1,0 +1,322 @@
+:- use_module(library(pce)).
+:-op(400,xfy,==>).
+:-op(300,xfy,=>).
+
+adjust(P,Iter,Width,Height,Size,Lss) :-
+	length(Lss,N),
+	Lss=[As|Tss],
+	length(As,M),
+	Mrow is M,
+	makeNM(P,Iter,Mrow,Width,Height,Size,N,M,Lss).
+
+makeNM(_,Iter,Mrow,Width,Height,Size,0,_,_).
+makeNM(P,Iter,Mrow,Width,Height,Size,N,J,[A|Ls]) :- %rows
+	N>0,
+	N1 is N-1,
+	GlobalHSize is Size*Iter, %5*20=200
+	M is GlobalHSize-N*Size, %write(I), write(' '), write(J),nl,	
+%	M is Width // Factor-N*Size, %write(I), write(' '), write(J),nl,
+	makeNBoxes(P,Iter,Mrow,Width,Height,Size,M,J,A),
+	makeNM(P,Iter,Mrow,Width,Height,Size,N1,J,Ls).
+
+makeNBoxes(P,Iter,Mrow,Width,Height,Size,Des,0,[]).
+makeNBoxes(P,Iter,Mrow,Width,Height,Size,Des,N,[B|Ds]) :-
+ 	  B==1,
+ 	  N>0,
+ 	   N1 is N-1,
+% %	   GlobalVSize is N*Size,
+ 	   GlobalVSize is Mrow*Size,
+ 	   M is GlobalVSize-N*Size,	   
+% %	   GlobalVSize is Size*N,
+% %	   M is GlobalVSize - Size*N,
+ 	send(P,display, new(D,box(Size,Size)),point(M,Des)),
+ 	send(D,colour(red)),
+ 	send(D,fill_pattern,colour(black)),
+% 	send(D,recogniser,new(move_gesture)),
+	   makeNBoxes(P,Iter,Mrow,Width,Height,Size,Des,N1,Ds).
+makeNBoxes(P,Iter,Mrow,Width,Height,Size,Des,N,[B|Ds]) :-
+	B==0,
+	  N>0,
+	   N1 is N-1,
+	   GlobalVSize is Mrow*Size,
+	   M is GlobalVSize-N*Size,	   
+
+%	   M is Width//2-N*Size,
+	send(P,display, new(D,box(Size,Size)),point(M,Des)),
+%	send(D,colour(red)),
+	send(D,fill_pattern,colour(red)),
+	send(D,recogniser,new(move_gesture)),	   
+	   makeNBoxes(P,Iter,Mrow,Width,Height,Size,Des,N1,Ds).	   
+
+test :-
+	new(F,frame('Automatas')),
+	get(@display,size,Size),
+	get(Size,width,Width),
+	get(Size,height,Height),	
+	send(F,append,new(P, picture('Attribute Demo',size(Width,Height)))),
+        send(new(Dial,dialog),right,P),
+	send(Dial, append, button(quit, message(@prolog,halt))),
+	send_list(Dial,append,new(C, int_item(ruleNumber, low := 1, high := 5))),
+	send(Dial, append, button(enter,
+				  message(@prolog, bidiCell,P,C?selection))),
+	send(Dial, default_button, enter),
+%	send(D, append, button(clear, message(Pict, clear))),	
+%	send(Dial, append, button(automata, message(@prolog,auto,P,S?selection))),
+%	adjust(P,[[1,0,0,0,1]]),	
+	send(F,open).
+
+
+bidiCell(P,Nth) :- start4(Mss), go(P,Mss,Nth).
+
+nth(1,[A|Ls],A).
+nth(N,[A|Ls],B) :-
+	N>1,
+	N1 is N-1,
+	nth(N1,Ls,B).
+
+go(P,Mss,Nth) :-
+	eq(first(5, infiCA(Mss)),Lss),
+	nth(Nth,Lss,As),
+	Width=400,
+	Height=400,
+	write(As),nl,
+	adjust(P,15,Width,Height,25,As).	
+
+infiCA(Ls) => [Ls|infiCA(Ls1)] :- life(Ls,Ls1).
+
+first(0,_) => [].
+first(_,[]) => [].
+first(N,[X|Xs]) => [X|first(N1,Xs)] :-
+	N1 is N-1.
+
+eq(X,Y) :- eq2(X,Y).
+
+eq2(X,Z) :- eq1(X,Y), eq2(Y,Z).
+eq2(X,X).
+
+eq1(X,Y) :- X=>Y.
+eq1([H|T1],[H|T2]) :- eq1(T1,T2).
+eq1(if(X1,Y,Z),if(X2,Y,Z)) :- eq1(X1,X2).
+eq1(first(X,Y1),first(X,Y2)) :- eq1(Y1,Y2).
+eq1(sieve(X1),sieve(X2)) :- eq1(X1,X2).
+eq1(filter(X1,Y),filter(X2,Y)) :- eq1(X1,X2).
+
+firsts([],[]).
+firsts([A|L],[A1|L1]) :- 
+        first(A,A1), 
+	firsts(L,L1).
+
+lasts([],[]).
+lasts([A|L],[A1|L1]) :- 
+        last(A,A1), 
+	lasts(L,L1).
+
+first([A|L],A).
+
+last(L,A) :- 
+        rev(L,L1), 
+	first(L1,A).
+
+rev([],[]).
+rev([A|L],Y) :-
+	rev(L,L1),
+	append(L1,[A],Y).
+
+append([],Xs,Xs).
+append([A|X],Y,[A|Z]) :- append(X,Y,Z).
+
+vertical(M,M1) :-
+	first(M,F),
+	last(M,L),
+	append([L],M,M0),
+	append(M0,[F],M1).
+
+horizontal(M,M1) :-
+	firsts(M,Fs),
+	lasts(M,Ls),
+	append_lasts(Ls,M,M2),
+	append_firsts(Fs,M2,M1).
+
+append_lasts([],[],[]).
+append_lasts([A|L],[B|Ls],[C|Lp]) :- C=[A|B],
+	append_lasts(L,Ls,Lp).
+
+append_firsts([],[],[]).
+append_firsts([A|L],[B|Ls],[C|Lp]) :-
+	append(B,[A],C),
+	append_firsts(L,Ls,Lp).
+
+
+new_matrix(M,M2) :- 
+        vertical(M,M1), 
+	horizontal(M1,M2).
+
+life(X,Z) :- 
+        new_matrix(X,X1), 
+	parts(X1,Y), 
+	loop1(Y,Z).
+
+parts([As,Bs,Cs],[C]) :- sep(As,Bs,Cs,C).
+parts([As,Bs,Cs|L],[U|Tl]) :-
+	sep(As,Bs,Cs,U), 
+     parts([Bs,Cs|L],Tl).
+
+sep([A1,A2,A3],[A4,A5,A6],[A7,A8,A9],
+    [sq([A1,A2,A3],[A4,A5,A6],[A7,A8,A9])]).
+sep([A1,A2,A3|L1],[A4,A5,A6|L2],[A7,A8,A9|L3],
+    [sq([A1,A2,A3],[A4,A5,A6],[A7,A8,A9])|L]) :-
+	sep([A2,A3|L1],[A5,A6|L2],[A8,A9|L3],L).
+
+loop1([],[]).
+loop1([A|L],[A1|L1]) :- 
+        loop2(A,A1), 
+	loop1(L,L1).
+
+loop2([],[]).
+loop2([A|L],[A1|L1]) :- 
+        rule(A,A1), 
+	loop2(L,L1).
+
+
+w([]).
+w([A|Ls]) :- wl(A),  w(Ls).
+
+wl([]) :- write('\n').
+wl([A|Ls]) :- wll(A), wl(Ls).
+
+wll([]) :- write('\n').
+wll([A|L]) :- write(A), write('\n'), write(' '), wll(L).
+	
+map([],[]).
+map([A|L],[B|L1]) :- 
+         rule(A,B), 
+	 map(L,L1).
+
+count(X,[],0).
+count(X,[X|Ls],N) :- count(X,Ls,N1),
+           N is N1+1.
+count(X,[Y|Ls],N) :- count(X,Ls,N).
+
+%---------------------------------------------
+rule(sq([A1,A2,A3],
+         [A4,0,A6],
+        [A7,A8,A9]),1) :-
+	A4=1.
+rule(sq([A1,A2,A3],
+        [A4,X,A6],
+        [A7,A8,A9]),X).
+%:-
+%	A4=1,
+
+sum([],0).
+sum([A|L],S) :- 
+        sum(L,S1),
+	S is A+S1.
+
+
+l(X) :- life(X,Y), wl(X), read(C), continue(C,Y).
+
+continue(C,Y) :- C='s', l(Y).
+continue(C,_) :- C='e'.
+
+start3(
+       [
+       [1,0,1,0,0,0,0,0,1,0,1,0,0],
+       [1,0,1,0,0,1,0,0,0,0,1,0,0],
+       [1,0,0,1,0,0,0,0,0,0,0,0,0],
+       [0,1,1,1,0,1,0,0,0,0,0,0,0],
+       [1,0,0,0,0,0,1,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0,0,0,0,0,0]	       
+       ]).
+
+
+start4(
+       [
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,1,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0,0,0,0,0]	       
+       ]).
+
+
+start([[1,0,1,0,0,1,0,1],
+       [1,0,1,0,0,1,0,1],
+       [1,0,0,1,0,0,0,0],
+       [0,1,1,1,0,1,0,0],
+       [1,0,0,0,0,0,1,0],
+       [0,0,0,0,0,0,0,0],
+       [1,0,1,0,0,1,1,0]]).
+
+
+
+start0([[1,2,1,0,0,1,0,1],
+       [1,2,1,0,0,1,0,1],
+       [1,3,1,1,4,5,6,6], %ply
+       [0,1,1,1,4,1,0,6],
+       [1,4,4,4,4,0,1,6],
+       [0,0,6,6,6,6,6,6],
+       [1,0,1,0,0,1,1,0]]).
+
+start1([[0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0],
+       [0,0,1,1,1,0,0,0],
+       [0,0,1,1,1,0,0,0],
+       [0,0,1,1,1,0,0,0],
+       [0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0]]).
+
+
+start11([
+       [0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0],
+       [0,0,0,1,1,1,0,0,0],
+       [0,0,0,1,1,1,0,0,0],
+       [0,0,0,1,1,1,0,0,0],
+       [0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0],
+       [0,0,0,0,0,0,0,0,0]]).
+
+
+% Execute with: start(X),l(X). and press 's.' to develop the game.
+
+
+go :- start1(X), l(X).
+
+%[1,2,2,2,1,1,3] -> [(1,3),(2,3),(3,1)]
+
+occur([],[]).
+occur([X|Ls],[(X,NXs)|Ls2]) :- 
+      count(X,Ls,M),
+      NXs is M+1,
+      delet(X,Ls,Ls1),
+      occur(Ls1,Ls2).
+
+delet(X,[],[]).
+delet(X,[X|Ls],Ls1) :- delet(X,Ls,Ls1).
+delet(X,[Y|Ls],[Y|Ls1]) :- delet(X,Ls,Ls1).
+
+
+
+
+
+

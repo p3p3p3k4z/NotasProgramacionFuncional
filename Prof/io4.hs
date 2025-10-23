@@ -1,0 +1,13 @@
+import System.IO
+--- ejemplo de generación de datos desde Haskell
+ls= concat ["test"++show (x,y)++". "  | x<-[1..10],y<-[1..10],x<y]
+
+main :: IO ()
+main = do
+    -- Write content to a new file or overwrite an existing one
+    writeFile "output.txt" ls
+    putStrLn "Content written to output.txt"
+
+    -- Append content to an existing file
+    appendFile "output2.txt" "\nAppending more text."
+    putStrLn "More content appended to output.txt"

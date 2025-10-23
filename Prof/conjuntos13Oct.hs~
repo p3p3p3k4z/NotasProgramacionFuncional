@@ -1,0 +1,6 @@
+import Data.Set
+import Data.Chr
+import Data.List
+import System.Random
+
+xy = [(x,y) | x<- powerSet (fromList [1,2,3,4]), y<- powerSet (fromList [1,2,3,4])]

@@ -1,0 +1,3 @@
+
+inicios ls = scanl (++) 0 ls
+

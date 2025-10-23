@@ -1,0 +1,14 @@
+--- Algoritmos de ordenamiento....
+
+-- El primero, quicksort (ordenamiento rápido).
+-- (Hoare, 60s, siglo pasado). Idea: dividir y vencer.
+-- Toma una lista (O en su caso, un arreglo). Toma un elemento
+-- arbitrario de la lista, a. Toma los elementos de la lista menores
+-- que a, lsaMenores; toma los elementos mayores que a, lsaMayores.
+-- Aplica recursivamente ésta idea a lsaMenores y lsaMayores...
+-- Pega todo. Tu lista debería estar ordenada.
+
+quickSort [] = []
+quickSort (a:bs) = quickSort [b | b<-bs, b<a] ++ [a] ++quicSort [b | b<-bs,b>=a]
+
+

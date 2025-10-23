@@ -1,0 +1,8 @@
+
+
+
+Escribe un programa en Haskell que ilustre las ideas
+de algun algoritmo de permutaciones a través
+de elementos gráficos interactivos (toros, esferas,
+cubos, o lo que sea) utilizando OpenGL y GLUT en
+Haskell mismo.

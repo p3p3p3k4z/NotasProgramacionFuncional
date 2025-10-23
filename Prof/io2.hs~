@@ -1,0 +1,15 @@
+alumnos@sc101:~/Prof$ ghci
+GHCi, version 9.4.7: https://www.haskell.org/ghc/  :? for help
+ghci> :l io01.hs
+[1 of 2] Compiling Main             ( io01.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+dame una palabra: guajoLote
+GUAJOLOTE
+dame una palabra: novia malvada
+NOVIA MALVADA
+dame una palabra: novia tierna
+NOVIA TIERNA
+dame una palabra: 
+
+dame una palabra: 

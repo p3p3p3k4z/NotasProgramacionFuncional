@@ -1,0 +1,5 @@
+
+
+
+
+data Ropa = Pantalon | Camisa | Calzado deriving Show

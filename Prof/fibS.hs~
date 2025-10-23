@@ -1,0 +1,6 @@
+
+data E = I Integer | M E E | P E E deriving Show
+
+fibS 0 = (1, I 0)
+fibS 1 = (1, I 1)
+fibS n | n>1 = suma (fibS (n-1)) (fibS (n-2)) 

@@ -1,0 +1,9 @@
+
+--- Resulta que Haskell se apoya en algo teórico llamado cálculo lambda.
+--- El cálculo lambda, por las notas en Classroom, es equivalente en poder
+--- computacional a las máquinas de Turing. Lo que podamos hacer con
+--- Máquinas de Turing lo podemos hacer con cálculo lambda; de otra forma,
+--- ingenieril, lo que podamos hacer con Java lo podemos hacer con Haskell.
+
+
+
