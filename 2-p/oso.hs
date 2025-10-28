@@ -1,0 +1,27 @@
+-- oso.hs
+
+main :: IO ()
+main = do
+  putStrLn "                  _         _"
+  putStrLn " .-""-.          ( )-\"```\"-( )          .-\"\"""-."
+  putStrLn "/ O O  \\          /         \\          /  O O \\"
+  putStrLn "|O .-.  \\        /   0 _ 0   \\        /  .-. O|"
+  putStrLn "\\ (   )  '.    _|     (_)     |     .'  (   ) /"
+  putStrLn " '.`-'     '-./ |             |`\\.-'     '-'.'"
+  putStrLn "   \\         |  \\   \\     /   /  |         /"
+  putStrLn "    \\        \\   '.  '._.'  .'   /        /"
+  putStrLn "     \\        '.   `'-----'`   .'        /"
+  putStrLn "      \\   .'    '-._        .-'\\   '.   /"
+  putStrLn "       |/`          `'''''')    )    `\\|"
+  putStrLn "       /                  (    (      ,\\"
+  putStrLn "      ;                    \\    '-..-'/ ;"
+  putStrLn "      |                     '.       /  |"
+  putStrLn "      |                       `'---'`   |"
+  putStrLn "      ;                                 ;"
+  putStrLn "       \\                               /"
+  putStrLn "        `.                           .'"
+  putStrLn "          '-._                   _.-'"
+  putStrLn "    jgs    __/`\"  '  - - -  ' \"`` \\__"
+  putStrLn "         /`            /^\           `\\"
+  putStrLn "         \\(          .'   '.         )/"
+  putStrLn "          '.(__(__.-'       '.__)__).'"
